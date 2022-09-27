@@ -29,67 +29,33 @@
                                     {% endif %}                                     
                                 </p> 
                             </div>
-                            <form method="post" action="" class="mt-4">
-                                
+                            <form action="{% url 'register' %}" method="POST">
                                 {% csrf_token %}
-
-                                <div class="form-group mb-4">
-                                    <label for="email">Username</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <span class="fas fa-user-circle"></span>
-                                        </span>
-                                        {{ form.username }}
-                                    </div>  
-                                    <span class="text-error">{{ form.username.errors }}</span>
-                                </div>
-
-                                <!-- Form -->
-                                <div class="form-group mb-4">
-                                    <label for="email">Your Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <span class="fas fa-envelope"></span>
-                                        </span>
-                                        {{ form.email }}
-                                    </div>  
-                                    <span class="text-error">{{ form.email.errors }}</span>
-                                </div>
-                                <!-- End of Form -->
                                 <div class="form-group">
-                                    
-                                    <!-- Form -->
-                                    <div class="form-group mb-4">
-                                        <label for="password">Your Password</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon2">
-                                                <span class="fas fa-unlock-alt"></span>
-                                            </span>
-                                            {{ form.password1 }}
-                                        </div>  
-                                        <span class="text-error">{{ form.password1.errors }}</span>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <label for="password">Password Confirmation</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon2">
-                                                <span class="fas fa-unlock-alt"></span>
-                                            </span>
-                                            {{ form.password2 }}
-                                        </div>  
-                                        <span class="text-error">{{ form.password2.errors }}</span>
-                                    </div>
-
-                                    <!-- End of Form -->
-                                    <div class="mb-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="remember">
-                                            <label class="form-check-label fw-normal mb-0" for="remember">
-                                                I agree to the <a href="#" class="fw-bold">terms and conditions</a>
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" name="first_name" class="form-control" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password2">Password</label>
+                                    <input type="password" name="password" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Confirm Password</label>
+                                    <input type="password" name="password2" class="form-control" required>
+                                </div>
+
                                 <div class="d-grid">
                                     <button type="submit" name="register" class="btn btn-gray-800">Sign UP</button>
                                 </div>
