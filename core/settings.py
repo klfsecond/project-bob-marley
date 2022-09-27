@@ -30,9 +30,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'apps.home', # Enable the inner home (home)
     'apps.realtors',
-    'apps.listings'  
+    'apps.listings',
+    'apps.pages',
+    'apps.accounts',
+    'apps.contacts'
 ]
 
 MIDDLEWARE = [
@@ -123,6 +127,17 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
 
+# media folder settings
+
+MEDIA_ROOT = os.path.join(CORE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+#messages
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS={
+    messages.ERROR:'danger',
+}
 
 #############################################################
 #############################################################
