@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, render
-from apps.listings.models import Listing
+from apps.listings.models import (
+    ListingModel
+)
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from apps.listings.choices import price_choices, bedroom_choices, state_choices
 
@@ -8,7 +10,7 @@ from apps.listings.choices import price_choices, bedroom_choices, state_choices
 
 
 def index(request):
-    listings = Listing.objects.order_by('-list_data').filter(is_published=True)
+    listings = ListingModel.objects.order_by('-list_data').filter(is_published=True)
 
     paginator = Paginator(listings, 3)
     page = request.GET.get('page')
@@ -31,7 +33,7 @@ def lisitng(request, listing_id):
 
 
 def search(request):
-    queryset_list=Listing.objects.order_by('-list_data')
+    queryset_list=ListingModel.objects.order_by('-list_data')
 
     #keywords
     if 'keywords' in request.GET:

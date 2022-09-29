@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from apps.listings.models import Listing
+from apps.listings.models import (
+    ListingModel
+)
 from apps.realtors.models import Realtor 
 from apps.listings.choices import price_choices, bedroom_choices, state_choices
 
@@ -8,7 +10,7 @@ from apps.listings.choices import price_choices, bedroom_choices, state_choices
 
 # Create your views here.
 def index(request):
-    listings = Listing.objects.order_by('-list_data').filter(is_published=True)[:3]
+    listings = ListingModel.objects.order_by('-list_data').filter(is_published=True)[:3]
     
     context ={
         'listings': listings,

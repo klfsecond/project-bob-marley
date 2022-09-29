@@ -1,3 +1,14 @@
+APPLICATION_STATUS_CHOICES = (
+    ("open"     ,"Open"),
+    ("scheduled","Scheduled"),
+    ("rejected" ,"Rejected"),
+    ("closed"   ,"Closed"),
+)
+VIEWING_STATUS_CHOICES = (
+    ("open"         ,"Open"),
+    ("rescheduled"  ,"Re-Scheduled"),
+    ("canceled"     ,"canceled"),
+)
 bedroom_choices={
 
     '1':1,
@@ -54,6 +65,4 @@ state_choices={
     'MI':'Michigan',
     'NM':'New Mexico',
     'NV':'Nevada',
-    
-
 }
