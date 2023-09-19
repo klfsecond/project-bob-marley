@@ -13,7 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path('auth/', include('apps.authentication.urls')),
     path('listings/', include('apps.listings.urls')),
-    path('', include('apps.home.urls')),             # UI Kits Html files 
+    path('', include('apps.pages.urls')),             # UI Kits Html files 
     path('pages/', include('apps.pages.urls')),
     path('accounts/', include('apps.accounts.urls')),
     path('contacts/', include('apps.contacts.urls')),
