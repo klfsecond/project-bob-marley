@@ -4,6 +4,9 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 import os
+import django_heroku
+import dj_database_url
+
 from decouple import config
 from unipath import Path
 
@@ -18,7 +21,7 @@ SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS        = ['*','tribloc.azurewebsites.net' 'localhost', 'localhost:85', '127.0.0.1', config('SERVER', default='127.0.0.1')]
+ALLOWED_HOSTS        = ['*', 'localhost', 'localhost:85', '127.0.0.1', config('SERVER', default='127.0.0.1')]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + config('SERVER', default='127.0.0.1')]
 # Application definition
 
@@ -119,13 +122,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(CORE_DIR, 'apps/static'),
-)
+STATICFILES_DIRS = (os.path.join(CORE_DIR, 'apps/static'),)
+django_heroku.settings(locals())
 
 # media folder settings
 
