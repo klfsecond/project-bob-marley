@@ -1,0 +1,371 @@
+/*-------------------------------
+    Dark Theme  CSS
+-------------------------------*/
+
+//Color Variable
+$clr_white: #fff;
+$clr_offwhite: rgba(255,255,255,0.85);
+$clr_black: #000;
+$clr_aztech: #0E1C1F;
+$clr_cod: #111;
+$clr_grey: #ABA8B0;
+$clr_athens: #F3F4F6;
+$clr_pome: #EC3323;
+$clr_seashell: #f9f9f9;
+$clr_reso: #002172;
+.switch-theme-mode{
+    position: fixed;
+    top: 200px;
+    right: 20px;
+    z-index: 99;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    &.round {
+        border-radius: 34px;
+        &:before{
+            border-radius: 50%;
+        }
+    }
+    &:before {
+        position: absolute;
+        content: "";
+        height: 40px;
+        width: 40px;
+        left: 0px;
+        bottom: 4px;
+        top: 0;
+        bottom: 0;
+        margin: auto 0;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        box-shadow: 0 0px 15px #2020203d;
+        background: white url('../img/night.png');
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+input:checked + .slider {
+  background-color: $clr_black;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px  $clr_black;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white url('../img/sunny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/*---------------------------------
+    Color CSS For Elements 
+-----------------------------------*/
+.theme-light {
+    .footer-logo,
+    .navbar-brand{
+        .logo-dark{
+            display: none!important;
+        }
+        .logo-light{
+            display: block!important;
+        }
+    }
+}
+
+.theme-dark {
+    .dpt-100{
+        padding-top: 100px;
+    }
+    .footer-logo,
+    .navbar-brand{
+        .logo-light{
+            display: none!important;
+        }
+        .logo-dark{
+            display: block!important;
+        }
+    }
+    .td-cod,
+    .td-cod.bg-seashell,
+    .header-wrap.sticky,
+    .search-property,
+    .testimonial-card.style2,
+    .testimonial-card.style3,
+    .footer-wrap{
+        background-color: $clr_cod!important;
+    }
+    body,
+    #signIn .modal-body,
+    #signUp .modal-body,
+    .counter-area::after,
+    .bg-white{
+        background-color: $clr_black!important;
+    }
+    .td-aztech,
+    .bg-vista-white,
+    .bg-seashell,
+    .counter-card-wrap.style2,
+    .property-card,
+    .footer-wrap.style2,
+    .about-wrap.style2 .about-box,
+    .property-card.style5 .property-info,
+    .property-card.style6 .property-info,
+    .simple-card .simple-card-info,
+    .testimonial-card .quote-wrap,
+    .testimonial-card .quote-wrap::before,
+    .testimonial-card .quote-wrap .client-info-wrap,
+    .agent-card,
+    .blog-card,
+    .property-card.style4 .property-info{
+        background-color: $clr_aztech!important;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    h3 a,
+    a,
+    .agent-details-wrap .agent-info-wrap .agent-info li b,
+    .property-details .property-desc .property-features li,
+    .counter-card-wrap .counter-card .counter-icon i{
+        color: $clr_white!important;
+    }
+    p,span,
+    .checkbox label,
+    .form_group label,
+    .testimonial-card .quote-wrap .client-info-wrap .ratings,
+    .about-wrap .about-content .content-feature-list li,
+    .property-card.style1 .property-info .ratings,
+    .property-card .property-info .property-metainfo li,
+    .agent-tablist .nav-item .nav-link, .property-tablist .nav-item .nav-link,
+    .property-details .property-title .property-metainfo li,
+    .property-details .property-desc .property-annuties li,
+    article ol li,
+    .terms-wrap ol li,
+    .content-feature-list li,
+    .blog-card .blog-info .blog-metainfo li,
+    article .post-metainfo li,
+    .login-form .login-body .form-group label{
+        color: $clr_offwhite!important;
+    }
+    h3:hover a,
+    a:hover,
+    article p strong, .terms-wrap p strong,
+    .counter-card-wrap .counter-card .counter-text h2,
+    .counter-card-wrap .counter-card .counter-text h2 span,
+    .counter-card-wrap .counter-card .counter-text h2 .target,
+    .property-card .property-info .property-metainfo li i,
+    .hero-wrap.style2 .hero-slide-item .hero-content h1 span,
+    .agent-tablist .nav-item .nav-link.active,
+    .property-tablist .nav-item .nav-link.active,
+    .property-card.style4 .property-info .property-price{
+        color: $clr_pome!important;
+    }
+     article,
+     .error-wrap,
+     .comment-item-wrap .comment-item,
+     .footer-wrap.style1 .footer-bottom,
+     .footer-wrap.style2 .footer-bottom,
+     .post-meta-option,
+     .comment-box-wrap,
+    .property-card.style3 .property-info .property-status-wrap,
+    .property-card.style6 .property-info .property-status-wrap,
+    .property-card .property-info .property-metainfo li{
+         border-color: rgba(255,255,255,0.19);
+    }
+    .wp-block-quote,
+    .contact-item,
+    .property-card .property-info .property-metainfo{
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .footer-wrap .footer-widget .footer-widget-title::after {
+        background-color: $clr_white;
+    }
+    .tag-list ul li a:hover{
+        background: $clr_pome!important;
+        border-color: transparent;
+        color: $clr_white;
+    }
+    .partner-item img {
+        filter: brightness(0) invert(1);
+    }
+    .video-wrap .video-content::after {
+        background: rgba(0, 0, 0, 0.86);
+    }
+    .link{
+        &.style1{
+            color: $clr_pome!important;
+        }
+    }
+    .btn.style3 {
+        background-color: $clr_white;
+        border: 1px solid transparent;
+        color: #002172;
+        &:after{
+            background-color: $clr_pome;
+        }
+        &:hover{
+            border-color: transparent;
+        }
+    }
+    .hw-card .hw-img .hw-shape-one {
+        filter: brightness(1) invert(0.8);
+    }
+    .testimonial-wrap .testimonial-shape-one {
+        opacity: 0.3;
+    }
+    select{
+        background-image: url(../img/down-arrow-white.png);
+    }
+    .video-wrap.style2::after {
+        background-color: rgba(0,0,0,1);
+    }
+    .filter-widget .form-group input,
+    .agent-desc .review-form .form-group input, 
+    .property-desc .review-form .form-group input,
+    .agent-info-box .agent-contact .form-group input,
+    .agent-info-box .agent-contact .form-group textarea,
+    .agent-desc .review-form .form-group textarea,
+    .property-desc .review-form .form-group textarea,
+    .newsletter-form .form-group input,
+    .search-box .form-group input,
+    #contactForm .form-group input,
+    #contactForm .form-group textarea,
+    #cmt-form .comment-form .form-group input,
+    #cmt-form .comment-form .form-group textarea,
+    .search-property .property-search-form .form-group input,
+    .login-content .user-form input{
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: $clr_white;
+    }
+    .filter-widget .form-group select,
+    .filter-item-num select,
+    .filter-item-cat select,
+    .search-property .property-search-form .form-group select{
+        background-color: $clr_cod;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: $clr_white;
+    }
+    .testimonial-card.style2{
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .faq-wrap.style1 .accordion-item,
+    .faq-wrap.style2 .accordion-item,
+    .faq-wrap.style3 .accordion-item,
+    .faq-wrap.style4 .accordion-item{
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+    }
+    .accordion-item .accordion-collapse .accordion-body{
+        border: none;
+        color: $clr_white;
+        background-color: transparent;
+    }
+    .faq-wrap.style1 .accordion-item .accordion-button,
+    .faq-wrap.style2 .accordion-item .accordion-button,
+    .faq-wrap.style3 .accordion-item .accordion-button,
+    .faq-wrap.style4 .accordion-item .accordion-button{
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: none;
+        color: $clr_white;
+    }
+    .tag-list li a {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        &:hover{
+            color: $clr_white!important;
+        }
+    }
+    .page-nav li a {
+        background-color: transparent;
+        color: $clr_offwhite;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        i{
+            color: $clr_white;
+        }
+        &:hover{
+            background-color: $clr_pome;
+            color: $clr_white!important;
+            border-color: transparent;
+            i{
+                color: $clr_white;
+            }
+        }
+    }
+    .accordion-item .accordion-header .accordion-button.collapsed span i{
+        color: $clr_white;
+    }
+    .agent-details-wrap,
+    .agent-desc .review-form,
+    .property-desc .review-form,
+    .sidebar .sidebar-widget {
+        box-shadow: none;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+}
+@media only screen and (max-width:991px) {
+    .theme-dark{
+        .mobile-top-bar span,
+        .header-wrap.style2 .mobile-top-bar span,
+        .header-wrap.style3 .mobile-top-bar span{
+            background-color: $clr_white;
+        }
+        .main-menu li a:hover{
+            color: $clr_reso;
+        }
+        .main-menu-wrap,
+        .header-wrap .navbar .navbar-nav .nav-item .dropdown-menu{
+            background-color: $clr_cod;
+        }
+        .header-wrap .navbar .navbar-nav .nav-item a {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .menu-close i,
+        .header-wrap .navbar .navbar-nav .nav-item .menu-expand i {
+            color:$clr_white;
+        }
+        .main-menu li a.active,
+        .main-menu li a{
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+@media only screen and (min-width:992px) {
+    .theme-dark{
+        .main-menu-wrap #menu ul li.has-children .sub-menu{
+            background-color: $clr_aztech;
+        }
+        .header-wrap .navbar .navbar-nav .nav-item .dropdown-menu{
+            background-color: $clr_cod;
+        }
+    }
+}

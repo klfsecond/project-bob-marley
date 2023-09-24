@@ -2,19 +2,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'css/all.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'css/all.css' %}" /> -->
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" /> -->
     <!-- Custom -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}" /> -->
     <!--light box-->
-    <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}" />
-
-    <title>Tribloc {% block title %}{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="{% static 'css/lightbox.min.css' %}" /> -->
+    <!-- Link of CSS files -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/remixicon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fancybox.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/jquery-ui-min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/odometer.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/dark-theme.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
+    <title>Dam It! {% block title %}{% endblock %}</title>
   </head>
   <body>
     <!-- topbar -->
@@ -28,9 +40,21 @@
     <!-- footer -->
     {% include 'partials/_footer.html' %}
 
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <!-- <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/lightbox.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script> -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/form-validator.min.js' %}"></script>
+    <script src="{% static 'assets/js/contact-form-script.js' %}"></script>
+    <script src="{% static 'assets/js/aos.js' %}"></script>
+    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-ui-min.js' %}"></script>
+    <script src="{% static 'assets/js/odometer.min.js' %}"></script>
+    <script src="{% static 'assets/js/fancybox.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.appear.js' %}"></script>
+    <script src="{% static 'assets/js/tweenmax.min.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
   </body>
 </html>

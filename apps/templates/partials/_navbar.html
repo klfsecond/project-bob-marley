@@ -1,6 +1,177 @@
 {% load static %}
+
+<!--Preloader starts-->
+<div class="loader js-preloader">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+<!--Preloader ends-->
+
+<!-- Theme Switcher Start -->
+<div class="switch-theme-mode">
+    <label id="switch" class="switch">
+            <input type="checkbox" onchange="toggleTheme()" id="slider">
+            <span class="slider round"></span>
+    </label>
+</div>
+<!-- Theme Switcher End -->
+<div class="page-wrapper">
+
+<!-- Header Section Start -->
+<header class="header-wrap style1">
+  <div class="container">
+      <nav class="navbar navbar-expand-md navbar-light">
+          <a class="navbar-brand" href="index.html">
+              <img class="logo-light" src="{% static 'assets/img/logo.png' %}" alt="logo">
+              <img class="logo-dark" src="{% static 'assets/img/logo-white.png' %}" alt="logo">
+          </a>
+          <div class="collapse navbar-collapse main-menu-wrap" id="navbarSupportedContent">
+              <div class="menu-close d-lg-none">
+                  <a href="javascript:void(0)"> <i class="ri-close-line"></i></a>
+              </div>
+              <ul class="navbar-nav ms-auto">
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          Home
+                          <i class="ri-add-line"></i>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li class="nav-item">
+                              <a href="index.html" class="nav-link">Home One</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="index-2.html" class="nav-link ">Home Two</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="index-3.html" class="nav-link">Home Three</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="about.html" class="nav-link active">
+                          About Us
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          Listings 
+                          <i class="ri-add-line"></i>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li class="nav-item">
+                              <a href="listings-one.html" class="nav-link">Listing Style One
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="listings-two.html" class="nav-link">Listing Style Two
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="listing-details.html" class="nav-link">Single Listings</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          Agents
+                          <i class="ri-add-line"></i>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li class="nav-item">
+                              <a href="agents.html" class="nav-link">Agent List</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="agent-details.html" class="nav-link">Agent Details</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          Pages
+                          <i class="ri-add-line"></i>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li class="nav-item">
+                              <a href="how-it-works.html" class="nav-link">How It Works</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="faq.html" class="nav-link">FAQ</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="testimonials.html" class="nav-link">Testimonials</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="terms-of-service.html" class="nav-link">Terms of Service</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="error-404.html" class="nav-link">404 Error Page</a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          Blog
+                          <i class="ri-add-line"></i>
+                      </a>
+                      <ul class="dropdown-menu">
+                          <li class="nav-item">
+                              <a href="blog.html" class="nav-link">
+                                  Blog
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  Single Blog
+                                  <i class="ri-add-line"></i>
+                              </a>
+                              <ul class="dropdown-menu">
+                                  <li class="nav-item">
+                                      <a href="blog-details-no-sidebar.html" class="nav-link">Blog Details No Sidebar</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a href="blog-details-left-sidebar.html" class="nav-link">Blog Details Left Sidebar</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a href="blog-details-right-sidebar.html" class="nav-link">Blog Details Right Sidebar</a>
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="contact.html" class="nav-link">Contact Us</a>
+                  </li>
+                  <li class="nav-item d-lg-none">
+                      <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
+                  </li>
+                  <li class="nav-item d-lg-none">
+                      <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#signUp">Sign Up</button>
+                  </li>
+              </ul>
+              <div class="others-options  md-none">
+                  <div class="header-btn">
+                      <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
+                      <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#signUp">Sign Up</button>
+                  </div>
+              </div>
+          </div>
+      </nav>
+      <div class="mobile-bar-wrap">
+          <div class="mobile-menu d-lg-none">
+              <a href="javascript:void(0)"><i class="ri-menu-line"></i></a>
+          </div>
+      </div>
+  </div>
+</header>  
+<!-- Header Section End -->
+
+
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
   <div class="container">
     <a class="navbar-brand" href="{% url 'index' %}">
       <img src="{% static 'img/logo.png' %}" class="logo" alt="" />
@@ -98,4 +269,4 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->

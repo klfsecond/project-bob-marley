@@ -3,145 +3,196 @@
 
 {% block content %}
 
-<section id="showcase-inner" class="py-5 text-white">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-12">
-        <h1 class="display-4">Browse Our Properties</h1>
-        <p class="lead">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt,
-          pariatur!
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="content-wrapper">
 
-<!-- Breadcrumb -->
-<section id="bc" class="mt-3">
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="{% url 'index' %}"> <i class="fas fa-home"></i> Home</a>
-        </li>
-        <li class="breadcrumb-item active">Browse Listings</li>
-      </ol>
-    </nav>
-  </div>
-</section>
-
-<!-- Listings -->
-<section id="listings" class="py-4">
-  <div class="container">
-    <div class="row">
-      {% if listings %} {% for listing in listings %}
-
-      <div class="col-md-6 col-lg-4 mb-4">
-        <div class="card listing-preview">
-          <img class="card-img-top" src="{{ listing.photo_main.url }}" alt="" />
-          <div class="card-img-overlay">
-            <h2>
-              <span class="badge badge-secondary text-white"
-                >${{ listing.price | intcomma }}</span
-              >
-            </h2>
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap bg-f br-1">
+      <div class="container">
+          <div class="breadcrumb-title">
+              <h2>Listing</h2>
+              <ul class="breadcrumb-menu list-style">
+                  <li><a href="index.html">Home </a></li>
+                  <li>Listing</li>
+              </ul>
           </div>
-          <div class="card-body">
-            <div class="listing-heading text-center">
-              <h4 class="text-primary">{{ listing.title }}</h4>
-              <p>
-                <i class="fas fa-map-marker text-secondary"></i>
-                {{ listing.city }} {{ listing.state }} {{ listing.zipcode }}
-              </p>
-            </div>
-            <hr />
-            <div class="row py-2 text-secondary">
-              <div class="col-6">
-                <i class="fas fa-th-large"></i> Sqft: {{ listing.sqft }}
-              </div>
-              <div class="col-6">
-                <i class="fas fa-car"></i> Garage: {{ listing.garage }}
-              </div>
-            </div>
-            <div class="row py-2 text-secondary">
-              <div class="col-6">
-                <i class="fas fa-bed"></i> Bedrooms: {{ listing.bedrooms }}
-              </div>
-              <div class="col-6">
-                <i class="fas fa-bath"></i> Bathrooms: {{ listing.bathrooms }}
-              </div>
-            </div>
-            <hr />
-            <div class="row py-2 text-secondary">
-              <div class="col-12">
-                <i class="fas fa-user"></i> {{ listing.realtor }}
-              </div>
-            </div>
-            <div class="row text-secondary pb-2">
-              <div class="col-6">
-                <i class="fas fa-clock"></i> {{ listing.list_data | timesince }}
-              </div>
-            </div>
-            <hr />
-            <a
-              href="{% url 'listing' listing.id %}"
-              class="btn btn-primary btn-block"
-              >More Info</a
-            >
-          </div>
-        </div>
       </div>
-      {% endfor %} {% else %}
-      <div class="col-md-12">
-        <p>No Listings Available</p>
-      </div>
-      {% endif %}
-    </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        {% if listings.has_other_pages %}
-        <ul class="pagination">
-          {% if listings.has_previous %}
-          <li class="page-item">
-            <a
-              href="?page={{ listings.previous_page_number }}"
-              class="page-link"
-              >&laquo;</a
-            >
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-            <a class="page-link">&laquo;</a>
-          </li>
-          {% endif %}
-           {% for i in listings.paginator.page_range %}
-           {% if listings.number == i %}
-          <li class="page-item active">
-            <a class="page-link">{{ i }}</a>
-          </li>
-          {% else %}
-          <li class="page-item">
-            <a href="?page={{ i }}" class="page-link">{{ i }}</a>
-          </li>
-          {% endif %}
-           {% endfor %} 
-          {% if listings.has_next %}
-          <li class="page-item">
-            <a href="?page={{ listings.next_page_number }}" class="page-link"
-              >&raquo;</a
-            >
-          </li>
-          {% else %}
-          <li class="page-item disabled">
-            <a class="page-link">&raquo;</a>
-          </li>
-          {% endif %}
-        </ul>
-        {% endif %}
-      </div>
-    </div>
   </div>
-</section>
+  <!-- Breadcrumb End -->
+
+  <!-- Listing section start -->
+  <section class="listing-wrap ptb-100">
+      <div class="container">
+          <div class="row gx-5">
+              <div class="col-xl-8">
+                  <div class="row align-items-center mb-25">
+                      <div class="col-md-8">
+                          <div class="profuct-result">
+                              <p>15 Results Found</p>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                          <div class="filter-item-cat">
+                              <select>
+                                  <option value="1">Sort By Most Popular</option>
+                                  <option value="2">Sort By High To Low</option>
+                                  <option value="3">Sort By Low To High</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                    {% if listings %} {% for listing in listings %}
+                      <div class="col-lg-6 col-md-6">
+                          <div class="property-card style2">
+                              <div class="property-img-slider owl-carousel">
+                                  <img src="{{ listing.photo_main.url }}" alt="Image">
+                                  <img src="assets/img/property/property-1.jpg" alt="Image">
+                                  <img src="assets/img/property/property-11.jpg" alt="Image">
+                              </div>
+                              <div class="property-info">
+                                  <div class="property-status-wrap">
+                                      <span class="property-status">For Rent</span>
+                                      <p class="property-price">${{ listing.price | intcomma }}/<span>month</span></p>
+                                  </div>
+                                  <h3><a href="listing-details.html">{{ listing.title }}</a></h3>
+                                  <p><i class="flaticon-location"></i>{{ listing.city }} {{ listing.state }} {{ listing.zipcode }}</p>
+                                  <ul class="property-metainfo list-style">
+                                      <li><i class="flaticon-double-bed"></i>{{ listing.bedrooms }}</li>
+                                      <li><i class="flaticon-bath-tub"></i>{{ listing.bathrooms }}</li>
+                                      <li><i class="flaticon-square"></i>{{ listing.sqft }}</li>
+                                  </ul>
+                              </div>
+                          </div>
+                      </div>
+                      {% endfor %} {% else %}
+                      <div class="col-md-12">
+                        <p>No Listings Available</p>
+                      </div>
+                      {% endif %}
+                  </div>
+                  <a href="listings-one.html" class="btn style1 mt-20">Load More Listings</a>
+                  <div class="row">
+                    <div class="col-md-12">
+                      {% if listings.has_other_pages %}
+                      <ul class="pagination">
+                        {% if listings.has_previous %}
+                        <li class="page-item">
+                          <a
+                            href="?page={{ listings.previous_page_number }}"
+                            class="page-link"
+                            >&laquo;</a
+                          >
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                          <a class="page-link">&laquo;</a>
+                        </li>
+                        {% endif %}
+                         {% for i in listings.paginator.page_range %}
+                         {% if listings.number == i %}
+                        <li class="page-item active">
+                          <a class="page-link">{{ i }}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                          <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                        </li>
+                        {% endif %}
+                         {% endfor %} 
+                        {% if listings.has_next %}
+                        <li class="page-item">
+                          <a href="?page={{ listings.next_page_number }}" class="page-link"
+                            >&raquo;</a
+                          >
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                          <a class="page-link">&raquo;</a>
+                        </li>
+                        {% endif %}
+                      </ul>
+                      {% endif %}
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xl-4">
+                  <div class="sidebar">
+                      <div class="sidebar-widget">
+                          <h4>Filter By Features</h4>
+                          <form action="#" class="filter-widget">
+                              <div class="form-group">
+                                  <label for="price-range">Radius Around Distance</label>
+                                  <div id="slider-range" class="price-range mar-bot-20"></div>
+                                  <input type="text" id="amount_one">
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" placeholder="Keywords">
+                              </div>
+                              <div class="form-group">
+                                  <select name="category" id="category">
+                                      <option data-show="Filter By Category" value="0">Filter By Category</option>
+                                      <option value="1">Apartment</option>
+                                      <option value="2">Villa</option>
+                                      <option value="3">Condo</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <select name="region" id="region">
+                                      <option data-show="Filter By Region" value="0">Filter By Region</option>
+                                      <option value="1">Apartment</option>
+                                      <option value="2">Villa</option>
+                                      <option value="3">Condo</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <select name="region" id="region">
+                                      <option data-show="Filter By Region" value="0">Filter By Region</option>
+                                      <option value="1">Apartment</option>
+                                      <option value="2">Villa</option>
+                                      <option value="3">Condo</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <select name="city" id="city">
+                                      <option data-show="Filter By City" value="0">Filter By City</option>
+                                      <option value="1">Apartment</option>
+                                      <option value="2">Villa</option>
+                                      <option value="3">Condo</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <select name="type" id="type">
+                                      <option data-show="Filter By Type" value="0">Filter By Type</option>
+                                      <option value="1">Apartment</option>
+                                      <option value="2">Villa</option>
+                                      <option value="3">Condo</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                                  <input type="text" placeholder="Location">
+                              </div>
+                              <div class="form-group">
+                                  <select name="price_range" id="price_range">
+                                      <option data-show="Price Range" value="0">Price Range</option>
+                                      <option value="1">$1000 - $2000</option>
+                                      <option value="2">$2000 - $3000</option>
+                                      <option value="3">$3000 - $4000</option>
+                                  </select>
+                              </div>
+                              <div class="form-group">
+                              <button class="btn style2 d-block w-100">Filter By Features</button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- Listing section end -->
+
+</div>
+<!-- Content wrapper end -->
+
+
 {% endblock %}
