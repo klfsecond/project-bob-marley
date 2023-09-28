@@ -22,7 +22,7 @@
 <header class="header-wrap style1">
   <div class="container">
       <nav class="navbar navbar-expand-md navbar-light">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="{% url 'index' %}">
               <img class="logo-light" src="{% static 'assets/img/logo.png' %}" alt="logo">
               <img class="logo-dark" src="{% static 'assets/img/logo-white.png' %}" alt="logo">
           </a>
@@ -61,14 +61,14 @@
                       </a>
                       <ul class="dropdown-menu">
                           <li class="nav-item">
-                              <a href="agents.html" class="nav-link">Agent List</a>
+                              <a href="{% url 'agents' %}" class="nav-link">Agent List</a>
                           </li>
                           <li class="nav-item">
-                              <a href="agent-details.html" class="nav-link">Agent Details</a>
+                              <a href="{% url 'agent_details' %}" class="nav-link">Agent Details</a>
                           </li>
                       </ul>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                       <a href="#" class="nav-link">
                           Pages
                           <i class="ri-add-line"></i>
@@ -126,7 +126,7 @@
                   </li>
                   <li class="nav-item">
                       <a href="contact.html" class="nav-link">Contact Us</a>
-                  </li>
+                  </li> -->
                   <li class="nav-item d-lg-none">
                       <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
                   </li>

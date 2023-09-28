@@ -11,7 +11,7 @@
           <div class="breadcrumb-title">
               <h2>Listing</h2>
               <ul class="breadcrumb-menu list-style">
-                  <li><a href="index.html">Home </a></li>
+                  <li><a href="{% url 'listings' %}">Home </a></li>
                   <li>Listing</li>
               </ul>
           </div>
@@ -54,7 +54,7 @@
                                       <span class="property-status">For Rent</span>
                                       <p class="property-price">${{ listing.price | intcomma }}/<span>month</span></p>
                                   </div>
-                                  <h3><a href="listing-details.html">{{ listing.title }}</a></h3>
+                                  <h3><a href="{% url 'listing' listing.id %}">{{ listing.title }}</a></h3>
                                   <p><i class="flaticon-location"></i>{{ listing.city }} {{ listing.state }} {{ listing.zipcode }}</p>
                                   <ul class="property-metainfo list-style">
                                       <li><i class="flaticon-double-bed"></i>{{ listing.bedrooms }}</li>

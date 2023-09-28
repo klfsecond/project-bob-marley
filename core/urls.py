@@ -17,4 +17,5 @@ urlpatterns = [
     path('pages/', include('apps.pages.urls')),
     path('accounts/', include('apps.accounts.urls')),
     path('contacts/', include('apps.contacts.urls')),
+    path('realtors/', include('apps.realtors.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

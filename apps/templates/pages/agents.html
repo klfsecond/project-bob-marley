@@ -1,0 +1,78 @@
+{% extends 'layouts/base_re.html' %} {% load static %}
+
+{% block title %} | About Us {% endblock %}
+
+{% block content %}
+
+<!-- Content Wrapper Start -->
+<div class="content-wrapper">
+
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap bg-f br-4">
+        <div class="container">
+            <div class="breadcrumb-title">
+                <h2>Agent</h2>
+                <ul class="breadcrumb-menu list-style">
+                    <li><a href="{% url 'index' %}">Home </a></li>
+                    <li>Agents</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Agent Section start -->
+    <section class="agent-wrap ptb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-4 col-lg-6 col-md-6">
+                    <div class="agent-card style1">
+                        <div class="agent-img">
+                            <img src="{% static 'assets/img/agents/agent-1.jpg' %}" alt="Image">
+                        </div>
+                        <div class="agent-info-wrap">
+                            <div class="agent-info">
+                                <h3><a href="{% url 'agent_details' %}">Erik Ondricka</a></h3>
+                                <span>Real Estate Agent</span>
+                                <ul class="social-profile list-style style1">
+                                    <li>
+                                        <a target="_blank" href="https://pinterest.com">
+                                            <i class="flaticon-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href="https://twitter.com">
+                                            <i class="flaticon-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href="https://facebook.com">
+                                            <i class="flaticon-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a target="_blank" href="https://linkedin.com">
+                                            <i class="flaticon-linkedin-1"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="page-nav list-style mt-10">
+                <li><a href="{% url 'agents' %}"><i class="flaticon-back"></i></a></li>
+                <li><a class="active" href="{% url 'agents' %}">1</a></li>
+                <li><a href="{% url 'agents' %}">2</a></li>
+                <li><a href="{% url 'agents' %}">3</a></li>
+                <li><a href="{% url 'agents' %}"><i class="flaticon-next-1"></i></a></li>
+            </ul>
+        </div>
+    </section>
+    <!-- Agent Section end -->
+
+</div>
+<!-- Content wrapper end -->
+
+{% endblock %}
