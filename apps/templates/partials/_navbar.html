@@ -138,16 +138,29 @@
                       <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#signUp">Sign Up</button>
                   </li> -->
               </ul>
+              {% if user.is_authenticated %}
               <div class="others-options  md-none">
-                  <div class="header-btn">
-                    <a href="{% url 'login' %}">
-                        <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
+                <div class="header-btn">
+                    <a href="{% url 'create_rental' %}">
+                        <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#CreateAd">Place Ad</button>
                     </a>
-                    <a href="{% url 'register' %}">
-                      <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#signUp">Sign Up</button>
+                    <a href="{% url 'logout' %}"></a>
+                        <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signOut">Sign Out</button>
                     </a>
-                  </div>
+                </div>
               </div>
+              {% else %}
+              <div class="others-options  md-none">
+                <div class="header-btn">
+                  <a href="{% url 'login' %}">
+                      <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
+                  </a>
+                  <a href="{% url 'register' %}">
+                    <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#signUp">Sign Up</button>
+                  </a>
+                </div>
+            </div>
+              {% endif %}
           </div>
       </nav>
       <div class="mobile-bar-wrap">

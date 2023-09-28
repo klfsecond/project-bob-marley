@@ -1,12 +1,23 @@
-from django.shortcuts import get_object_or_404, render
-from apps.listings.models import (
-    ListingModel
-)
+from django.shortcuts import get_object_or_404, render, redirect
+from apps.listings.models import (ListingModel)
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from apps.listings.choices import price_choices, bedroom_choices, state_choices
-
+from .forms import CreateRentalListing
 
 # Create your views here.
+
+def create_rental_listing(request):
+    if request.method == 'POST':
+        form = CreateRentalListing(request.POST)
+        if form.is_valid():
+            form.save()  # Saves the instance to the database
+            return redirect('index')  # Redirect to a success page or the same page
+    else:
+        form = CreateRentalListing()
+    
+    return render(request, 'listings/create_rental_listing.html', {'form': form})
+
+
 
 
 def index(request):
