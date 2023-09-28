@@ -1,36 +1,42 @@
 {% extends 'layouts/base_re.html' %}
-{% block title %} | Account Login {% endblock %}
+{% block title %} | Sign In {% endblock %}
 {% block content %}
-<section id="login" class="bg-light py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 mx-auto">
-          <div class="card">
-            <div class="card-header bg-primary text-white">
-              <h4>
-                <i class="fas fa-sign-in-alt"></i> Login</h4>
-            </div>
-            <div class="card-body">
-                 <!--Alerts-->
-                 {% include 'partials/_alert.html' %}  
-              <form action="{% url 'login' %}" method="POST">
-                  {% csrf_token %}
-                <div class="form-group">
-                  <label for="username">Email</label>
-                  <input type="text" name="email" class="form-control" required>
-                </div>
+<!-- Content Wrapper Start -->
+<div class="content-wrapper">
 
-                <div class="form-group">
-                  <label for="password2">Password</label>
-                  <input type="password" name="password" class="form-control" required>
-                </div>
-
-                <input type="submit" value="Login" class="btn btn-secondary btn-block">
-              </form>
-            </div>
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap bg-f br-2">
+      <div class="container">
+          <div class="breadcrumb-title">
+              <h2>Sign In</h2>
+              <ul class="breadcrumb-menu list-style">
+                  <li><a href="{% url 'index' %}">Home </a></li>
+                  <li>Sign In</li>
+              </ul>
           </div>
-        </div>
       </div>
+  </div>
+  <!-- Breadcrumb End -->
+
+  <!-- section start -->
+  <section class="about-wrap style3 pt-100">
+    <div class="container">
+      <!--Alerts-->
+      {% include 'partials/_alert.html' %}  
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="username">Email</label>
+          <input type="text" name="email" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password2">Password</label>
+          <input type="password" name="password" class="form-control" required>
+        </div>
+        <input type="submit" value="Login" class="btn btn-secondary btn-block">
+      </form>
     </div>
   </section>
+</div>
 {% endblock %}

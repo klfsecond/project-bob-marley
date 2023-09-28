@@ -3,6 +3,8 @@ from django.contrib import messages
 from .models import Contacts
 from django.core.mail import send_mail
 
+# Create your views here.
+
 def contact(request):
     if request.method=='POST':
         listing_id=request.POST['listing_id']
@@ -24,26 +26,15 @@ def contact(request):
                 return redirect('/listings/'+listing_id)
 
         contact=Contacts(listing=listing, listing_id=listing_id, name=name, email=email,phone=phone, message=message, user_id=user_id)
-
         contact.save()
 
         # Send mail
-
         # send_mail (
         #         'Property Listing Inquiry',
         #         'There has been an inquiry for' + listing + '.Sign into the admin panel for more info',
-        #         'jcrocks34@gmail.com',
-        #         [realtor_email,'krishultimate0010@gmail.com','manumanoj0010@gmail.com'],
+        #         [realtor_email],
         #         fail_silently=False
-
         # )
                 
-        
-
-
-
         messages.success(request, 'Your request has been submitted, a realtor will get back to you soon')
         return redirect('/listings/'+listing_id)
-
-
-# Create your views here.

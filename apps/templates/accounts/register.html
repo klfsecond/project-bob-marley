@@ -1,14 +1,33 @@
 {% extends 'layouts/base_re.html' %}
-{% block title %} | Register Account {% endblock %}
+{% block title %} | Sign Up {% endblock %}
 {% block content %}
-<section id="register" class="bg-light py-5">
+
+<!-- Content Wrapper Start -->
+<div class="content-wrapper">
+
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb-wrap bg-f br-2">
+      <div class="container">
+          <div class="breadcrumb-title">
+              <h2>Sign Up</h2>
+              <ul class="breadcrumb-menu list-style">
+                  <li><a href="{% url 'index' %}">Home </a></li>
+                  <li>Sign Up</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  <!-- Breadcrumb End -->
+
+  <!-- section start -->
+  <section id="register" class="bg-light py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-6 mx-auto">
           <div class="card">
             <div class="card-header bg-primary text-white">
               <h4>
-                <i class="fas fa-user-plus"></i> Register</h4>
+                <i class="fas fa-user-plus"></i>Sign Up</h4>
             </div>
             <div class="card-body">
                 <!--Alerts-->
@@ -43,5 +62,6 @@
       </div>
     </div>
   </section>
+</div>
 
   {% endblock %}
