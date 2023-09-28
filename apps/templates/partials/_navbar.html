@@ -127,17 +127,25 @@
                   <li class="nav-item">
                       <a href="contact.html" class="nav-link">Contact Us</a>
                   </li> -->
-                  <li class="nav-item d-lg-none">
-                      <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
+                  <!-- <li class="nav-item d-lg-none">
+                    <div class="header-btn">
+                      <a class="nav-link" href="{% url 'login' %}">
+                        <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signUp">Sign In</button>
+                      </a>
+                    </div>
                   </li>
                   <li class="nav-item d-lg-none">
                       <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#signUp">Sign Up</button>
-                  </li>
+                  </li> -->
               </ul>
               <div class="others-options  md-none">
                   <div class="header-btn">
-                      <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
+                    <a href="{% url 'login' %}">
+                        <button type="button" class="btn style3" data-bs-toggle="modal" data-bs-target="#signIn">Sign In</button>
+                    </a>
+                    <a href="{% url 'register' %}">
                       <button type="button" class="btn style1" data-bs-toggle="modal" data-bs-target="#signUp">Sign Up</button>
+                    </a>
                   </div>
               </div>
           </div>
