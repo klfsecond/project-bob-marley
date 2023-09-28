@@ -23,7 +23,7 @@
     <!-- Ad section start -->
     <section class="about-wrap style3 pt-100">
         <div class="container">
-            <form action="#" class="filter-widget">
+            <form action="{% url 'create_rental' %}" method="POST"></form>
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form.as_p }} <!-- Renders the form fields as a series of paragraphs -->
