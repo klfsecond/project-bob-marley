@@ -1,5 +1,39 @@
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }} <!-- Renders the form fields as a series of paragraphs -->
-    <button type="submit">Submit</button>
-</form>
+{% extends 'layouts/base_re.html' %} {% load humanize %} 
+{% block title %} | Create Rental Listing {% endblock %}
+
+{% block content %}
+
+<!-- Content Wrapper Start -->
+<div class="content-wrapper">
+
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb-wrap bg-f br-2">
+        <div class="container">
+            <div class="breadcrumb-title">
+                <h2>Create Ad</h2>
+                <ul class="breadcrumb-menu list-style">
+                    <li><a href="{% url 'index' %}">Home </a></li>
+                    <li>Create Ad</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Ad section start -->
+    <section class="about-wrap style3 pt-100">
+        <div class="container">
+            <form action="#" class="filter-widget">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }} <!-- Renders the form fields as a series of paragraphs -->
+                </div>
+                <div class="form-group">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+<!-- Content wrapper end -->
+{% endblock %}
