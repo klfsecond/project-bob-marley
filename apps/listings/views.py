@@ -7,17 +7,22 @@ from .forms import CreateRentalListing
 # Create your views here.
 
 def create_rental_listing(request):
+    msg = None
+    success = False
+
     if request.method == 'POST':
-        form = CreateRentalListing(request.POST)
+        form = CreateRentalListing(request.POST, request.FILES)
         if form.is_valid():
             form.save()  # Saves the instance to the database
-            return redirect('index')  # Redirect to a success page or the same page
+            msg = 'User created - please <a href="/login">login</a>.'
+            success = True
+            return redirect('/listings')  # Redirect to a success page or the same page
+        else:
+            msg = 'Form is not valid'
     else:
-        form = CreateRentalListing()
+        form = CreateRentalListing() 
     
-    return render(request, 'listings/create_rental_listing.html', {'form': form})
-
-
+    return render(request, 'listings/create_rental_listing.html', {"form": form, "msg": msg, "success": success})
 
 
 def index(request):

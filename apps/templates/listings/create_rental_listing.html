@@ -1,11 +1,9 @@
-{% extends 'layouts/base_re.html' %} {% load humanize %} 
+{% extends 'layouts/base_re.html' %} 
 {% block title %} | Create Rental Listing {% endblock %}
-
 {% block content %}
 
 <!-- Content Wrapper Start -->
 <div class="content-wrapper">
-
     <!-- Breadcrumb Start -->
     <div class="breadcrumb-wrap bg-f br-2">
         <div class="container">
@@ -19,11 +17,12 @@
         </div>
     </div>
     <!-- Breadcrumb End -->
-
-    <!-- Ad section start -->
+    <!-- alerts -->
+    {% include 'partials/_alert.html' %}
+    <!-- section start -->
     <section class="about-wrap style3 pt-100">
         <div class="container">
-            <form action="{% url 'create_rental' %}" method="POST"></form>
+            <form action="{% url 'create_rental' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form.as_p }} <!-- Renders the form fields as a series of paragraphs -->
