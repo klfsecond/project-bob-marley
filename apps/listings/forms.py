@@ -1,7 +1,53 @@
 from django import forms
 from .models import ListingModel
+from apps.realtors.models import Realtor
 
-class CreateRentalListing(forms.ModelForm):
+class CreateRentalListingForm(forms.ModelForm):
     class Meta:
         model = ListingModel
-        fields = '__all__'
+        # fields = '__all__'
+        fields = [
+            'photo_main',
+            'title',
+            'description',
+            'address_line_one',
+            'address_line_two',
+            'city',
+            'state',
+            'zipcode',
+            'price',
+            'bedrooms',
+            'bathrooms',
+            'garage',
+            'sqft',
+            'realtor'
+        ]
+        widgets = {
+            'photo_main':forms.FileInput(attrs={'class': "form-control" }),
+            'title': forms.TextInput(attrs={'class': "form-control","placeholder":"Title"}),
+            'address_line_one':forms.TextInput(attrs={'class': "form-control","placeholder":"Address Line One" }),
+            'address_line_two':forms.TextInput(attrs={'class': "form-control","placeholder":"Address Line Two" }),
+            'city': forms.TextInput(attrs={'class': "form-control","placeholder":"City" }),
+            'state': forms.TextInput(attrs={'class': "form-control","placeholder":"State" }),
+            'zipcode': forms.TextInput(attrs={'class': "form-control" ,"placeholder":"Zip Code" }),
+            'description': forms.Textarea(attrs={'class': "form-control" ,"placeholder":"Listing Description" }),
+            'price': forms.TextInput(attrs={'class': "form-control" ,"placeholder":"Price" }),
+            'bedrooms': forms.NumberInput(attrs={'class': "form-control" ,"placeholder":"No. Bedrooms" }),
+            'bathrooms': forms.NumberInput(attrs={'class': "form-control" ,"placeholder":"No. Bathrooms" }),
+            'garage': forms.CheckboxInput(attrs={'class': "form-control" }),
+            'sqft': forms.NumberInput(attrs={'class': "form-control" ,"placeholder":"Property Ares Sq Ft" }),
+            'realtor': forms.Select(choices=Realtor.objects.filter(is_enabled=True),attrs={'class': "form-control" ,"placeholder":"Select a Realtor" })
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for key, field in self.fields.items():
+            field.label = ""
+            field.required = False
+
+    def save(self, commit=True):
+        m = super(CreateRentalListingForm, self).save(commit=False)
+        # do custom stuff
+        if commit:
+            m.save()
+        return m
+    

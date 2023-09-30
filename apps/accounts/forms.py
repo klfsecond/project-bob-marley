@@ -5,8 +5,8 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
-User = get_user_model()
+from django.contrib.auth.models import User
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -58,9 +58,3 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        for key, field in self.fields.items():
-            field.label = ""
-            field.required = False

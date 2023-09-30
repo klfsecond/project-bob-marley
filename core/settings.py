@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'apps.listings',
     'apps.pages',
     'apps.accounts',
-    'apps.contacts'
+    'apps.contacts',
+    'apps.authentication'
 ]
 AUTH_USER_MODEL = "accounts.ClientModel"
 

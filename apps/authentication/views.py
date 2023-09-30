@@ -5,9 +5,30 @@ Copyright (c) 2019 - present AppSeed.us
 
 # Create your views here.
 from django.shortcuts import render, redirect
+from django.views import View
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 
+class LoginView(View):
+    template_name = "accounts/login.html"
+
+    def get(self,request):
+        print("I'm here")
+        messages.add_message(request, messages.INFO, "Hello world.")
+        form = LoginForm(request.GET)
+        return render(request, self.template_name,context={"form":form})
+    
+    def post(self,request):
+        form     = LoginForm(request.POST or None)
+        username = form.cleaned_data.get("username")
+        password = form.cleaned_data.get("password")
+        user     = authenticate(username=username, password=password)
+        if user is not None:
+            messages.add_message(request, messages.INFO, "Hello world.")
+            login(request, user)
+            return redirect("/")
+        return redirect('home')
 
 def login_view(request):
     form = LoginForm(request.POST or None)
