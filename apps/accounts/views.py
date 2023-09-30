@@ -54,13 +54,19 @@ class RegisterView(View):
     def post(self,request):
         form = SignUpForm(request.POST)
         password    = request.POST['password']
-        password2   = request.POST['password2']        
+        password2   = request.POST['password2']
+        print(password,password2)
+        print(form.is_valid())
+        print(request.POST)
+        print(form)
+        
         if form.is_valid() and str(password) == str(password2) and not User.objects.filter(email=request.POST['email']).exists() :
             user = User.objects.create_user(password=password, email=request.POST['email'])
-            form.save()
+            user.set_password(password)
+            # form.save()
             return redirect('login')
         elif form.errors:
-            messages.add_message(request, messages.ERROR , f"Oops! {form.error_messages}")
+            messages.add_message(request, messages.ERROR , f"Oops! {form}")
             return redirect('register')
 
 
@@ -72,20 +78,25 @@ class LoginView(View):
         return render(request, self.template_name, context={"form":form})
     
     def post(self,request):
-        form     = LoginForm(request.POST or None)
-        print(form.data)
-        username = form.data["username"]
-        password = form.data["password"]
-        user     = auth.authenticate(username=username, password=password)
-        if user is not None:
-            messages.add_message(request, messages.SUCCESS , f"Welcome back {user}!")
-            auth.login(request, user)
-            return redirect("/")
-        return redirect('home')
+        form     = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.data["username"]
+            password = form.data["password"]
+            user     = auth.authenticate(username=username, password=password)
+            if user is not None:
+                messages.add_message(request, messages.SUCCESS , f"Welcome back {user}!")
+                auth.login(request, user)
+                return redirect("/")
+            # No User Found
+            messages.add_message(request, messages.ERROR , f"We could not find an account matching your email. Please check and try again!")
+            return redirect('login')
+        # Form Errors
+        messages.add_message(request, messages.ERROR , f"Oop! {form.errors}")
+        return redirect('login')
 
 # This needs a DB Change to work, add owner to property listing model.
 class PortalView(View):
-    template_name = ''
+    template_name = "accounts/portal.html"
 
     def get(self,request):
         listings = ListingModel.objects.filter()

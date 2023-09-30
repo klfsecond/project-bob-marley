@@ -1,0 +1,405 @@
+
+{% extends 'layouts/base_re.html' %} 
+{% load static %}
+{% load humanize %}
+{% block title %} | Portal {% endblock %}
+{% block content%}
+
+
+<!--  -->
+
+
+
+
+<!-- Counter Section start -->
+<div class="counter-area  bg-seashell pt-100 pb-75">
+    <!-- Breadcrumb -->
+    <section id="bc" class="mt-3">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                    <a href="{% url 'index'%}">
+                        <i class="fas fa-home"></i> Home</a>
+                    </li>
+                    <li class="breadcrumb-item active"> Dashboard</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+    <!-- Breadcrumb end -->
+    <!-- Title Start -->
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="display-4">User Dashboard</h1>
+                <p class="lead">Manage your TriBloc account</p>
+            </div>
+        </div>
+        <br><br>
+    </div>
+    <!-- Title End -->
+    <div class="container">
+        <div class="counter-card-wrap style1">
+            <div class="counter-card">
+                <span class="counter-icon">
+                    <i class="flaticon-search"></i>
+                </span>
+                <div class="counter-text">
+                    <h2 class="counter-num">
+                        <span class="odometer" data-count="12"></span>
+                    </h2>
+                    <p>Active Listings</p>
+                </div>
+            </div>
+            <div class="counter-card">
+                <span class="counter-icon">
+                    <i class="flaticon-apartment"></i>
+                </span>
+                <div class="counter-text">
+                    <h2 class="counter-num">
+                        <span class="odometer" data-count="3"></span>
+                    </h2>
+                    <p>Active Tenants</p>
+                </div>
+            </div>
+            <div class="counter-card">
+                <span class="counter-icon">
+                    <i class="flaticon-time"></i>
+                </span>
+                <div class="counter-text">
+                    <h2 class="counter-num">
+                        <span class="odometer" data-count="5"></span>
+                    </h2>
+                    <p>Sheduled Viewings</p>
+                </div>
+            </div>
+            <div class="counter-card">
+                <span class="counter-icon">
+                    <i class="flaticon-email"></i>
+                </span>
+                <div class="counter-text">
+                    <h2 class="counter-num">
+                        <span class="odometer" data-count="1"></span>
+                    </h2>
+                    <p>Pending Messages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Counter Section End -->
+
+<section id="showcase-inner" class="py-5 text-white">
+    
+</section>
+
+<!-- alerts -->
+{% include 'partials/_alert.html' %}
+<section id="dashboard" class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Welcome {{ User.first_name }}</h2>
+                {% if contacts %}
+                <p>Here are the property listings that you have inquired about</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Property</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.id }}</td>
+                            <td>{{ contact.listing }}</td>
+                            <td>
+                            <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">View Listing</a>
+                            </td>
+                        </tr>  
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <p style="border: 1px solid black;">You have not made any inquiries </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Your Property section start -->
+<section class="property-wrap pt-100 pb-75">
+  <div class="container">
+      <div class="row section-title style1 mb-40  align-items-end">
+          <div class="col-md-8">
+              <h2>Your Active Listings</h2>
+          </div>
+          <div class="col-md-4 text-md-end sm-none">
+                <a href="listings-one.html" class="btn style1">
+                    View All Listings
+                </a>
+          </div>
+      </div>
+      <div class="tab-content hw-tab-content">
+          <div class="tab-pane fade show active" id="tab_1" role="tabpanel">
+              <div class="row">
+                  <div class="col-xl-4 col-lg-6 col-md-6">
+                      <div class="property-card style2">
+                          <div class="property-img-slider owl-carousel">
+                              <img src="{% static 'assets/img/property/property-10.jpg' %}" alt="Image">
+                              <img src="{% static 'assets/img/property/property-1.jpg' %}" alt="Image">
+                              <img src="{% static 'assets/img/property/property-11.jpg' %}" alt="Image">
+                          </div>
+                          <div class="property-info">
+                              <div class="property-status-wrap">
+                                  <span class="property-status">For Rent</span>
+                                  <p class="property-price">$34,900/<span>month</span></p>
+                              </div>
+                              <h3><a href="listing-details.html">Villa In Luis Park</a></h3>
+                              <p><i class="flaticon-location"></i>64, 1st Aveneu, High Steet, USA</p>
+                              <ul class="property-metainfo list-style">
+                                  <li><i class="flaticon-double-bed"></i>06</li>
+                                  <li><i class="flaticon-bath-tub"></i>04</li>
+                                  <li><i class="flaticon-square"></i>3100 sqft</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xl-4 col-lg-6 col-md-6">
+                      <div class="property-card style2">
+                          <div class="property-img-slider owl-carousel">
+                              <img src="{% static 'assets/img/property/property-2.jpg' %}" alt="Image">
+                              <img src="{% static 'assets/img/property/property-7.jpg' %}" alt="Image">
+                              <img src="{% static 'assets/img/property/property-8.jpg' %}" alt="Image">
+                          </div>
+                          <div class="property-info">
+                              <div class="property-status-wrap">
+                                  <span class="property-status">For Sale</span>
+                                  <p class="property-price">$21,400</p>
+                              </div>
+                              <h3><a href="listing-details.html">Modern Apartment</a></h3>
+                              <p><i class="flaticon-location"></i>123/A, Miles Ave, North Steet, USA</p>
+                              <ul class="property-metainfo list-style">
+                                  <li><i class="flaticon-double-bed"></i>05</li>
+                                  <li><i class="flaticon-bath-tub"></i>03</li>
+                                  <li><i class="flaticon-square"></i>2500 sqft</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- Your Property section end -->
+
+<!-- Your Applications section start -->
+<section class="city-wrap pt-100 pb-75 bg-seashell">
+    <img src="{% static 'assets/img/shape-2.png' %}" alt="Image" class="city-shape-one">
+    <div class="container">
+        <div class="section-title style1 mb-40">
+            <h2>Your applications</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                <div class="city-card style1">
+                    <img src="{% static 'assets/img/city/city-5.jpg' %}" alt="Image">
+                    <div class="city-info">
+                        <h3><a href="listings-one.html">San Fransisco</a></h3>
+                        <p>+231 properties</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+                <div class="city-card style1">
+                    <img src="{% static 'assets/img/city/city-6.jpg' %}" alt="Image">
+                    <div class="city-info">
+                        <h3><a href="listings-one.html">Torento City</a></h3>
+                        <p>+1222 properties</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+                <div class="city-card style1">
+                    <img src="{% static 'assets/img/city/city-7.jpg' %}" alt="Image">
+                    <div class="city-info">
+                        <h3><a href="listings-one.html">Vancuver City</a></h3>
+                        <p>+151 properties</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500">
+                <div class="city-card style1">
+                    <img src="{% static 'assets/img/city/city-8.jpg' %}" alt="Image">
+                    <div class="city-info">
+                        <h3><a href="listings-one.html">Montreal City</a></h3>
+                        <p>+232 properties</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+<!-- Your Applications section end -->
+
+<!-- Your Tenants section start -->
+<section class="property-wrap pt-100 pb-75">
+    <div class="container">
+        <div class="row section-title style1 mb-40  align-items-end">
+            <div class="col-md-8">
+                <h2>Your Tenants</h2>
+            </div>
+            <div class="col-md-4 text-md-end sm-none">
+                  <a href="listings-one.html" class="btn style1">
+                      View All Applications
+                  </a>
+            </div>
+        </div>
+        <div class="tab-content hw-tab-content">
+            <div class="tab-pane fade show active" id="tab_1" role="tabpanel">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="property-card style2">
+                            <div class="property-img-slider owl-carousel">
+                                <img src="{% static 'assets/img/property/property-10.jpg' %}" alt="Image">
+                                <img src="{% static 'assets/img/property/property-1.jpg' %}" alt="Image">
+                                <img src="{% static 'assets/img/property/property-11.jpg' %}" alt="Image">
+                            </div>
+                            <div class="property-info">
+                                <div class="property-status-wrap">
+                                    <span class="property-status">For Rent</span>
+                                    <p class="property-price">$34,900/<span>month</span></p>
+                                </div>
+                                <h3><a href="listing-details.html">Villa In Luis Park</a></h3>
+                                <p><i class="flaticon-location"></i>64, 1st Aveneu, High Steet, USA</p>
+                                <ul class="property-metainfo list-style">
+                                    <li><i class="flaticon-double-bed"></i>06</li>
+                                    <li><i class="flaticon-bath-tub"></i>04</li>
+                                    <li><i class="flaticon-square"></i>3100 sqft</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="property-card style2">
+                            <div class="property-img-slider owl-carousel">
+                                <img src="{% static 'assets/img/property/property-2.jpg' %}" alt="Image">
+                                <img src="{% static 'assets/img/property/property-7.jpg' %}" alt="Image">
+                                <img src="{% static 'assets/img/property/property-8.jpg' %}" alt="Image">
+                            </div>
+                            <div class="property-info">
+                                <div class="property-status-wrap">
+                                    <span class="property-status">For Sale</span>
+                                    <p class="property-price">$21,400</p>
+                                </div>
+                                <h3><a href="listing-details.html">Modern Apartment</a></h3>
+                                <p><i class="flaticon-location"></i>123/A, Miles Ave, North Steet, USA</p>
+                                <ul class="property-metainfo list-style">
+                                    <li><i class="flaticon-double-bed"></i>05</li>
+                                    <li><i class="flaticon-bath-tub"></i>03</li>
+                                    <li><i class="flaticon-square"></i>2500 sqft</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Your Tenants section end -->
+
+<!-- City section start -->
+<section class="city-wrap pt-100 pb-75 bg-seashell">
+  <img src="{% static 'assets/img/shape-2.png' %}" alt="Image" class="city-shape-one">
+  <div class="container">
+      <div class="section-title style1 text-center mb-40">
+          <span>Choose A Popular City</span>
+          <h2>Our Hottest Nearby Cities</h2>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-1.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">New York City</a></h3>
+                      <p>+5231 properties</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-2.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">Los Angeles</a></h3>
+                      <p>+1211 properties</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-3.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">Prauge</a></h3>
+                      <p>+121 properties</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-4.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">Florida</a></h3>
+                      <p>+432 properties</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-5.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">San Fransisco</a></h3>
+                      <p>+231 properties</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-6.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">Torento City</a></h3>
+                      <p>+1222 properties</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="400">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-7.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">Vancuver City</a></h3>
+                      <p>+151 properties</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500">
+              <div class="city-card style1">
+                  <img src="{% static 'assets/img/city/city-8.jpg' %}" alt="Image">
+                  <div class="city-info">
+                      <h3><a href="listings-one.html">Montreal City</a></h3>
+                      <p>+232 properties</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- City section end -->
+
+
+{% endblock %}

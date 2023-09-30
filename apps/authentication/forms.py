@@ -40,7 +40,7 @@ class SignUpForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
-    password1 = forms.CharField(
+    password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": "Password",
@@ -57,7 +57,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password', 'password2')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
