@@ -17,6 +17,7 @@ from apps.realtors.models import(
 # Create your models here.
 
 class ListingModel(models.Model):
+    landlord        = models.ForeignKey(ClientModel, on_delete=models.PROTECT)
     realtor         = models.ForeignKey(Realtor, on_delete=models.DO_NOTHING)
     title           = models.CharField(max_length=200)
     address_line_one= models.CharField(max_length=200)
@@ -48,6 +49,9 @@ class ListingModel(models.Model):
 class PropertyApplicationModel(models.Model):
     client      = models.ForeignKey(ClientModel, on_delete=models.PROTECT)
     property    = models.ForeignKey(ListingModel, on_delete=models.PROTECT)
+    phone_number= models.CharField(max_length=13)
+    occupants   = models.IntegerField()
+    move_in_date= models.DateField(auto_now=False,null=True,blank=True)
     message     = models.TextField(verbose_name="Application Message")
     status      = models.CharField(max_length=90,choices=APPLICATION_STATUS_CHOICES)
     response    = models.TextField()
@@ -56,7 +60,7 @@ class PropertyApplicationModel(models.Model):
 # APPLICATION TO PROPERTY LISTED
 
 # VIEWING APPOINTMENT
-class PropertyViewing(models.Model):
+class PropertyViewingModel(models.Model):
     application = models.ForeignKey(PropertyApplicationModel, on_delete=models.PROTECT)
     status      = models.CharField(max_length=30,choices=VIEWING_STATUS_CHOICES)
     viewing_on  = models.DateTimeField(null=False)

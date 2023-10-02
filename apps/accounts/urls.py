@@ -7,4 +7,5 @@ urlpatterns = [
     path('logout', views.LogOutView.as_view(), name='logout'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('portal', views.PortalView.as_view(), name='portal'),
+    path('your_listings', views.YourListingsView.as_view(), name='your_listings'),
 ]

@@ -5,7 +5,7 @@ from django.contrib import admin
 from apps.listings.models import (
     ListingModel,
     PropertyApplicationModel,
-    PropertyViewing
+    PropertyViewingModel
 )
 
 
@@ -20,5 +20,5 @@ class ListingAdmin(admin.ModelAdmin):
 
 admin.site.register(ListingModel, ListingAdmin)
 admin.site.register(PropertyApplicationModel)
-admin.site.register(PropertyViewing)
+admin.site.register(PropertyViewingModel)
 

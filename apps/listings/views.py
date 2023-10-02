@@ -4,8 +4,8 @@ from django.views import View
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.contrib import messages, auth
 from apps.listings.choices import price_choices, bedroom_choices, state_choices
-from .forms import CreateRentalListingForm
-
+from .forms import CreateRentalListingForm , CreateListingApplicationForm
+from apps.accounts.models import (ClientModel)
 # Create your views here.
 
 class CreateRentalListingView(View):
@@ -47,15 +47,27 @@ class IndexView(View):
         return render(request, self.template_name, context)
 
 
+class ListingView(View):
+    template_name = 'listings/listing.html'
 
-def lisitng(request, listing_id):
-    listing=get_object_or_404(ListingModel, pk=listing_id)
+    def get(self, request, listing_id):
+        listing = get_object_or_404(ListingModel, pk=listing_id)
+        form    = CreateListingApplicationForm()
+        context={
+            'listing':listing,
+            'form':form
+        }
+        return render(request,self.template_name , context)
+    
+    def post(self, request, listing_id):
+        listing = get_object_or_404(ListingModel, pk=listing_id)
+        form    = CreateListingApplicationForm(request.POST)
+        client  = get_object_or_404(ClientModel, id=request.user.pk)
+        if form.is_valid():
+            form.save(commit=False,client=client,property=listing)
+            return redirect('portal')
+        return redirect('listing',listing_id)
 
-    context={
-        'listing':listing
-    }
-
-    return render(request, 'listings/listing.html', context)
 
 
 def search(request):

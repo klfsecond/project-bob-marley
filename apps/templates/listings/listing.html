@@ -50,8 +50,7 @@
                       </div>
                       <div class="property-desc">
                           <h4>Description</h4>
-                          <p>Cras ultricies ligula sed magna dictum porta. Nulla quis lorem ut libero malesuada feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque in ipsum id orci porta dapibus. Curabitur arcu erat accumsan id imperdiet et, porttitor at sem. Curabitur arcu erat accumsan id imperdiet et porttitor.</p>
-                          <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Donec sollicitudin molestie malesuada. Nulla porttitor accumsan tincidunt. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus.</p>
+                          <p>{{listing.description}}</p>
                       </div>
                       <div class="property-desc">
                           <h4>Property Details</h4>
@@ -121,6 +120,7 @@
                               </a>
                           </div>
                       </div>
+                      <!-- REVIEWS -->
                       <div class="property-desc">
                           <h4>3 Reviews</h4>
                           <div class="property-review comment-item-wrap">
@@ -234,6 +234,8 @@
                               </div>
                           </div>
                       </div>
+                      <!-- REVIEWS -->
+
                       <div class="property-desc">
                           <h4>Add Your Review</h4>
                           <form class="review-form">
@@ -352,42 +354,24 @@
               </div>
               <div class="col-xl-4">
                   <div class="sidebar">
-                      <div class="sidebar-widget">
-                          <h4>Book This Apartment</h4>
-                          <form action="#" class="filter-widget">
-                              <div class="form-group">
-                                  <input type="text" placeholder="Full Name">
-                              </div>
-                              <div class="form-group">
-                                  <input type="number" placeholder="Phone Number">
-                              </div>
-                              <div class="form-group">
-                                  <input type="email" placeholder="Email Address">
-                              </div>
-                              <div class="form-group">
-                                  <select name="category" id="category">
-                                      <option data-show="Family Members" value="0">Family Members</option>
-                                      <option value="1">2</option>
-                                      <option value="2">4</option>
-                                      <option value="3">6</option>
-                                  </select>
-                              </div>
-                              <div class="form-group">
-                                  <select name="region" id="region">
-                                      <option data-show="Children" value="0">Children</option>
-                                      <option value="1">1</option>
-                                      <option value="2">2</option>
-                                      <option value="3">3</option>
-                                  </select>
-                              </div>
-                              <div class="form-group">
-                                  <textarea name="booking_msg" id="booking_msg" cols="30" rows="10" placeholder="Your Message"></textarea>
-                              </div>
-                              <div class="form-group">
-                                  <button class="btn style2">Request Booking</button>
-                              </div>
-                          </form>
-                      </div>
+
+                        <!-- APPLICATION FORM -->
+                        <div class="sidebar-widget">
+                            <h4>Book This Apartment</h4>
+                            <form action="#" class="filter-widget"  method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    {{ form.as_p }}
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn style2">
+                                        Request Booking
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                      <!-- APPLICATION FORM -->
+
                       <div class="sidebar-widget">
                           <h4>Recent Properties</h4>
                           <div class="property-thumb-item">
@@ -418,6 +402,7 @@
                               </div>
                           </div>
                       </div>
+                      <!-- AGENT FORM -->
                       <div class="sidebar-widget">
                           <h4>Agent Information</h4>
                           <div class="agent-info-box">
@@ -452,6 +437,7 @@
                               </form>
                           </div>
                       </div>
+                      <!-- AGENT FORM -->
                       <div class="sidebar-widget">
                           <h4>Popular Tags</h4>
                           <ul class="tag-list list-style">

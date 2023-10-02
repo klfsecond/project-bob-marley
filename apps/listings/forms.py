@@ -1,5 +1,6 @@
+from typing import Any
 from django import forms
-from .models import ListingModel
+from .models import ListingModel, PropertyApplicationModel
 from apps.realtors.models import Realtor
 
 class CreateRentalListingForm(forms.ModelForm):
@@ -50,4 +51,40 @@ class CreateRentalListingForm(forms.ModelForm):
         if commit:
             m.save()
         return m
+    
+class CreateListingApplicationForm(forms.ModelForm):
+    class Meta:
+        model = PropertyApplicationModel
+        # fields = '__all__'
+        fields = [
+            'phone_number',
+            'message',
+            'move_in_date',
+            'occupants',
+        ]
+        widgets = {
+            'occupants': forms.NumberInput(attrs={'class': "filter-widget " ,"placeholder":"No. of Occupants" }),
+            'phone_number': forms.TextInput(attrs={'class': "filter-widget " ,"placeholder":"Phone Number"}),
+            'message': forms.Textarea(attrs={'class': "filter-widget " ,"placeholder":"Your message",'name':'booking_msg','id':"booking_msg"}),
+            'move_in_date': forms.DateInput(attrs={'placeholder':'Move in date'})
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for key, field in self.fields.items():
+            field.label = ""
+            field.required = False
+        self.fields['move_in_date'].widget = forms.widgets.DateInput(
+            attrs={
+                'type': 'date', 
+                'placeholder': 'Move in Date',
+                'class': 'filter-widget'
+                }
+            )
+    def save(self, commit, client, property):
+        application = super(CreateListingApplicationForm,self).save(commit)
+        application.client = client
+        application.property = property
+        application.status = 'open'
+        application.save()
+        return application
     

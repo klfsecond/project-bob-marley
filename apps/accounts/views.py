@@ -5,44 +5,9 @@ from apps.authentication.forms import LoginForm, SignUpForm
 from django.contrib import messages, auth
 from apps.accounts.models import ClientModel as User
 from apps.contacts.models import Contacts
-from apps.listings.models import ListingModel
+from apps.listings.models import ListingModel, PropertyApplicationModel,PropertyViewingModel
 
 
-# Create your views here.
-# def register(request):
-#     if request.method =='POST':
-#         first_name = request.POST['first_name']
-#         last_name = request.POST['last_name']
-#         email = request.POST['email']
-#         password = request.POST['password']
-#         password2 = request.POST['password2']
-
-#         # check if passwords match 
-#         if password==password2:
-#             #check email
-#             if User.objects.filter(email=email).exists():
-#                 messages.error(request,'That email is taken')
-#                 return redirect('register')
-#             else:
-#                 if User.objects.filter(email=email).exists():
-#                     messages.error(request,'That email is being used')
-#                     return redirect('register')
-#                 else:
-#                     user = User.objects.create_user(password=password, email=email)
-#                     # Login after register
-#                     # auth.login(request,user)
-#                     # messages.success(request,'You are now logged in')
-#                     # return redirect('index')
-#                     user.save()
-#                     messages.success(request,'You are now registered and can log in')
-#                     return redirect('login')
-
-#         else:
-#             messages.error(request, 'Passwords do not match')
-#             return redirect('register')
-
-#     else:
-#         return render(request,'accounts/register.html')
 
 class RegisterView(View):
     template_name = "accounts/register.html"
@@ -52,19 +17,15 @@ class RegisterView(View):
         return render(request, self.template_name,context={"form":form})
     
     def post(self,request):
-        form = SignUpForm(request.POST)
-        password    = request.POST['password']
-        password2   = request.POST['password2']
-        print(password,password2)
-        print(form.is_valid())
-        print(request.POST)
-        print(form)
-        
+        form      = SignUpForm(request.POST)
+        password  = request.POST['password']
+        password2 = request.POST['password2']
         if form.is_valid() and str(password) == str(password2) and not User.objects.filter(email=request.POST['email']).exists() :
             user = User.objects.create_user(password=password, email=request.POST['email'])
             user.set_password(password)
-            # form.save()
+            messages.add_message(request, messages.SUCCESS , f"! {form}")
             return redirect('login')
+        
         elif form.errors:
             messages.add_message(request, messages.ERROR , f"Oops! {form}")
             return redirect('register')
@@ -78,7 +39,7 @@ class LoginView(View):
         return render(request, self.template_name, context={"form":form})
     
     def post(self,request):
-        form     = LoginForm(request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
             username = form.data["username"]
             password = form.data["password"]
@@ -94,31 +55,66 @@ class LoginView(View):
         messages.add_message(request, messages.ERROR , f"Oop! {form.errors}")
         return redirect('login')
 
+# This needs work
+class LogOutView(View):
+    def get(request,self):
+        auth.logout(request)
+        messages.success(request,'You are now logged out')
+        return redirect('index')
+# This needs work
+
 # This needs a DB Change to work, add owner to property listing model.
 class PortalView(View):
     template_name = "accounts/portal.html"
 
     def get(self,request):
-        listings = ListingModel.objects.filter()
-        active_listings = listings.filter(is_published=True)
-        inactive_listings = listings.filter(is_published=True)
+        listings                    = ListingModel.objects.filter(landlord=request.user)
+        # ACTIVE LISTINGS
+        active_listings             = listings.filter(is_published=True)
+        active_listings_count       = active_listings.count()
+        # INACTIVE LISTINGS
+        inactive_listings           = listings.filter(is_published=True)
+        inactive_listings_count     = inactive_listings.count()
+        # VIEWINGS - Client 
+        client_viewing_appointments        = PropertyViewingModel.objects.filter(application__client=request.user)
+        client_viewing_appointments_count  = client_viewing_appointments.count()
+        # VIEWINGS - Landlord
+        landloard_viewing_appointments        = PropertyViewingModel.objects.filter(application__property__landlord=request.user)
+        landloard_viewing_appointments_count  = landloard_viewing_appointments.count()
+        # Messages 
+        message_count = 0
+
         context = {
-            active_listings : active_listings,
-            inactive_listings : inactive_listings
+            "active_listings" : active_listings,
+            "active_listings_count":active_listings_count,
+            "inactive_listings" : inactive_listings,
+            "inactive_listings_count":inactive_listings_count,
+            'client_viewing_appointments':client_viewing_appointments,
+            'client_viewing_appointments_count':client_viewing_appointments_count,
+            'landloard_viewing_appointments':landloard_viewing_appointments,
+            'landloard_viewing_appointments_count':landloard_viewing_appointments_count,
+            'upcoming_viewings_total':landloard_viewing_appointments_count + client_viewing_appointments_count,
+            'message_count':message_count
         }
         return render(request,self.template_name,context)
 # This needs a DB Change to work, add owner to property listing model.
 
-# This needs work
-class LogOutView(View):
+# 
+class YourListingsView(View):
+    template_name = "accounts/your_listings.html"
 
-    def get(request,self):
-        print(request)
-        print(request.request.body )
-        auth.logout(request)
-        messages.success(request,'You are now logged out')
-        return redirect('index')
-# This needs work
+    def get(self,request):
+        listings                    = ListingModel.objects.filter(landlord=request.user)
+        # ACTIVE LISTINGS
+        active_listings             = listings.filter(is_published=True)
+        active_listings_count       = active_listings.count()
+        context = {
+            'active_listings':active_listings,
+            'active_listings_count':active_listings_count
+        }
+        return render(request,self.template_name,context)
+
+
 
 
 def dashboard(request):
