@@ -25,10 +25,10 @@
                     <div class="hero-bg-one bg-f">
                         <div class="client-feedback">
                             <ul class="list-style">
-                                <li><a href="testimonials.html"><img src="{% static 'assets/img/clients/client-1.jpg' %}" alt="Image"></a></li>
-                                <li><a href="testimonials.html"><img src="{% static 'assets/img/clients/client-2.jpg' %}" alt="Image"></a></li>
-                                <li><a href="testimonials.html"><img src="{% static 'assets/img/clients/client-3.jpg' %}" alt="Image"></a></li>
-                                <li><a href="testimonials.html"><img src="{% static 'assets/img/clients/client-4.jpg' %}" alt="Image"></a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/clients/client-4.jpg' %}" alt="Image"></a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/clients/client-5.jpg' %}" alt="Image"></a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/clients/client-3.jpg' %}" alt="Image"></a></li>
+                                <li><a href="#"><img src="{% static 'assets/img/clients/client-6.jpg' %}" alt="Image"></a></li>
                             </ul>
                             <span>29k Positive Review</span>
                         </div>
@@ -40,10 +40,10 @@
                                     </div>
                                     <div class="property-info">
                                         <h3><a href="{% url 'listing' listing.id %}">{{ listing.title }}</a></h3>
-                                        <p>Lorem ipsum dolor sit ame con adipi scing elit osmo</p>
+                                        <p>{{ listing.city }} {{ listing.state }} {{ listing.zipcode }}</p>
                                         <div class="ratings">
                                             <i class="flaticon-star"></i>
-                                            4.8(400+ Review)
+                                            4.8(4+ Review)
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
               </span>
               <div class="counter-text">
                   <h2 class="counter-num">
-                      <span class="odometer" data-count="12"></span>
+                      <span class="odometer" data-count="10+"></span>
                       <span class="target">+</span>
                   </h2>
                   <p>Years Of Experience</p>
@@ -79,7 +79,7 @@
               </span>
               <div class="counter-text">
                   <h2 class="counter-num">
-                      <span class="odometer" data-count="167"></span>
+                      <span class="odometer" data-count="1"></span>
                       <span class="target">K+</span>
                   </h2>
                   <p>Apartments Rent</p>
@@ -91,7 +91,7 @@
               </span>
               <div class="counter-text">
                   <h2 class="counter-num">
-                      <span class="odometer" data-count="239"></span>
+                      <span class="odometer" data-count="1"></span>
                       <span class="target">+</span>
                   </h2>
                   <p>Total Constructions</p>
@@ -123,7 +123,7 @@
               <h2>Latest House Listings</h2>
           </div>
           <div class="col-md-4 text-md-end sm-none">
-              <a href="listings-one.html" class="btn style1">View All Listings</a>
+              <a href="{% url 'listings' %}" class="btn style1">View All Listings</a>
           </div>
       </div>
       <ul class="nav nav-tabs property-tablist" role="tablist">
@@ -140,50 +140,30 @@
       <div class="tab-content hw-tab-content">
           <div class="tab-pane fade show active" id="tab_1" role="tabpanel">
               <div class="row">
+                {% for listing in listings %}
                   <div class="col-xl-4 col-lg-6 col-md-6">
                       <div class="property-card style2">
                           <div class="property-img-slider owl-carousel">
-                              <img src="{% static 'assets/img/property/property-10.jpg' %}" alt="Image">
-                              <img src="{% static 'assets/img/property/property-1.jpg' %}" alt="Image">
-                              <img src="{% static 'assets/img/property/property-11.jpg' %}" alt="Image">
+                              <img src="{{ listing.photo_main.url }}" alt="Image">
+                              <img src="{{ listing.photo_main.url }}" alt="Image">
+                              <img src="{{ listing.photo_main.url }}" alt="Image">
                           </div>
                           <div class="property-info">
                               <div class="property-status-wrap">
                                   <span class="property-status">For Rent</span>
-                                  <p class="property-price">$34,900/<span>month</span></p>
+                                  <p class="property-price">{{ listing.price }}/<span>month</span></p>
                               </div>
-                              <h3><a href="listing-details.html">Villa In Luis Park</a></h3>
-                              <p><i class="flaticon-location"></i>64, 1st Aveneu, High Steet, USA</p>
+                              <h3><a href="{% url 'listing' listing.id %}">{{ listing.title }}</a></h3>
+                              <p><i class="flaticon-location"></i>{{ listing.city }} {{ listing.state }} {{ listing.zipcode }}</p>
                               <ul class="property-metainfo list-style">
-                                  <li><i class="flaticon-double-bed"></i>06</li>
-                                  <li><i class="flaticon-bath-tub"></i>04</li>
-                                  <li><i class="flaticon-square"></i>3100 sqft</li>
+                                  <li><i class="flaticon-double-bed"></i>{{ listing.bedrooms }}</li>
+                                  <li><i class="flaticon-bath-tub"></i>{{ listing.bathrooms }}</li>
+                                  <li><i class="flaticon-square"></i>{{ listing.sqft }}</li>
                               </ul>
                           </div>
                       </div>
                   </div>
-                  <div class="col-xl-4 col-lg-6 col-md-6">
-                      <div class="property-card style2">
-                          <div class="property-img-slider owl-carousel">
-                              <img src="{% static 'assets/img/property/property-2.jpg' %}" alt="Image">
-                              <img src="{% static 'assets/img/property/property-7.jpg' %}" alt="Image">
-                              <img src="{% static 'assets/img/property/property-8.jpg' %}" alt="Image">
-                          </div>
-                          <div class="property-info">
-                              <div class="property-status-wrap">
-                                  <span class="property-status">For Sale</span>
-                                  <p class="property-price">$21,400</p>
-                              </div>
-                              <h3><a href="listing-details.html">Modern Apartment</a></h3>
-                              <p><i class="flaticon-location"></i>123/A, Miles Ave, North Steet, USA</p>
-                              <ul class="property-metainfo list-style">
-                                  <li><i class="flaticon-double-bed"></i>05</li>
-                                  <li><i class="flaticon-bath-tub"></i>03</li>
-                                  <li><i class="flaticon-square"></i>2500 sqft</li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
+                {% endfor %}
               </div>
           </div>
       </div>
@@ -192,7 +172,7 @@
 <!-- Property section end -->
 
 <!-- About section start -->
-<section class="about-wrap style1 ptb-100 bg-seashell">
+<!-- <section class="about-wrap style1 ptb-100 bg-seashell">
   <img src="{% static 'assets/img/about/shape-3.png" alt="Image" class="about-shape-three">
   <div class="container">
       <div class="row gx-5 align-items-center">
@@ -222,7 +202,7 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 <!-- About section end -->
 
 <!-- Advantage Section start -->
@@ -275,7 +255,7 @@
 <!-- Advantage Section end -->
 
 <!-- Video Section start -->
-<div class="bg-seashell ptb-100">
+<!-- <div class="bg-seashell ptb-100">
   <div class="container">
       <div class="video-wrap style1 video-bg-1 bg-f ptb-100">
           <div class="row align-items-center">
@@ -298,11 +278,11 @@
           </div>
       </div>
   </div>
-</div>
+</div> -->
 <!-- Video Section end -->
 
 <!-- simple section start -->
-<section class="simple-wrap pt-100 pb-75">
+<!-- <section class="simple-wrap pt-100 pb-75">
   <div class="container">
       <div class="row">
           <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
@@ -345,11 +325,11 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 <!-- simple section end -->
 
 <!-- City section start -->
-<section class="city-wrap pt-100 pb-75 bg-seashell">
+<!-- <section class="city-wrap pt-100 pb-75 bg-seashell">
   <img src="{% static 'assets/img/shape-2.png' %}" alt="Image" class="city-shape-one">
   <div class="container">
       <div class="section-title style1 text-center mb-40">
@@ -431,11 +411,11 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 <!-- City section end -->
 
 <!-- Testimonial section start -->
-<section class="testimonial-wrap ptb-100">
+<!-- <section class="testimonial-wrap ptb-100">
   <img src="{% static 'assets/img/shape-1.png' %}" alt="Image" class="testimonial-shape-one">
   <div class="container">
       <div class="section-title style1 text-center mb-40">
@@ -565,11 +545,11 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 <!-- Testimonial section end -->
 
 <!-- FAQ section start -->
-<section class="faq-wrap style1 ptb-100 bg-seashell">
+<!-- <section class="faq-wrap style1 ptb-100 bg-seashell">
   <div class="container">
       <div class="row gx-5 align-items-center">
           <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1200" data-aos-delay="400">
@@ -669,11 +649,11 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 <!-- FAQ section end -->
 
 <!-- Property Slider start -->
-<section class="property-slider-wrap ptb-100">
+<!-- <section class="property-slider-wrap ptb-100">
   <div class="container">
       <div class="row">
           <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
@@ -766,7 +746,7 @@
           </div>
       </div>
   </div>
-</section>
+</section> -->
 <!-- Property Slider end -->
 {% endblock %}
  
