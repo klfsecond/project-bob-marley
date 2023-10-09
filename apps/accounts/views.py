@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views import View
 # from django.contrib.auth import authenticate, login
 from apps.authentication.forms import LoginForm, SignUpForm
@@ -124,3 +124,16 @@ def dashboard(request):
         'contacts':user_contacts
     }
     return render(request,'accounts/dashboard.html',context)
+
+
+class ApplicationView(View):
+    template_name = 'accounts/application_profile.html'
+
+    def get(self, request, application_id):
+        application = get_object_or_404(PropertyApplicationModel, pk=application_id)
+        context={
+            'application': application
+        }
+        return render(request, self.template_name, context)
+    
+

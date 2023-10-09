@@ -8,4 +8,6 @@ urlpatterns = [
     path('dashboard', views.dashboard, name='dashboard'),
     path('portal', views.PortalView.as_view(), name='portal'),
     path('your_listings', views.YourListingsView.as_view(), name='your_listings'),
+    path('<int:application_id>', views.ApplicationView.as_view(), name='application'),
+
 ]
